@@ -1,15 +1,14 @@
-apply plugin: 'com.android.library'
-
-android {
-    compileSdkVersion safeExtGet("compileSdkVersion", 33)
-}
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'kotlin'
 
 repositories {
-    flatDir {
-        dirs 'libs'
-    }
+    mavenCentral()
 }
 
 dependencies {
-    implementation(name: 'rscompanion_v.1.0.2', ext: 'aar')
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
 }
+
+// Optional: If you want to publish this AAR as a part of a library module
+group = 'com.github.IPCCanada'
+version = '1.0.2'
