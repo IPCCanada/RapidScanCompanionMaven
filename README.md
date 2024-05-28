@@ -1,2 +1,2 @@
 # RapidScanCompanionMaven
-Maven package for adding Rapid Scan Companion to Android
+Maven Repository to install RapidScan library into Android
