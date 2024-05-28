@@ -1,22 +1,9 @@
-apply plugin: 'maven-publish'
-
-group = 'com.github.IPCCanada'
-version = '1.0.2'
-
-publishing {
-    publications {
-        aar(MavenPublication) {
-            artifactId = 'rscompanion'
-            artifact('rscompanion_v.1.0.2.aar')
-        }
+repositories {
+    flatDir {
+        dirs 'libs'
     }
-    repositories {
-        maven {
-            url = uri("https://maven.pkg.github.com/IPCCanada/RapidScanCompanionMaven")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.token") ?: System.getenv("TOKEN")
-            }
-        }
-    }
+}
+
+dependencies {
+    implementation(name: 'rscompanion_v.1.0.2', ext: 'aar')
 }
