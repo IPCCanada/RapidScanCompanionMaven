@@ -1,14 +1,22 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply plugin: 'kotlin'
+apply plugin: 'maven-publish'
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.aar'])
-}
-
-// Optional: If you want to publish this AAR as a part of a library module
 group = 'com.github.IPCCanada'
 version = '1.0.2'
+
+publishing {
+    publications {
+        aar(MavenPublication) {
+            artifactId = 'rscompanion'
+            artifact('rscompanion_v.1.0.2.aar')
+        }
+    }
+    repositories {
+        maven {
+            url = uri("https://maven.pkg.github.com/IPCCanada/RapidScanCompanionMaven")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.token") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+}
